@@ -3,6 +3,7 @@ using namespace std;
 #include <vector>
 #include "BloomFilter.h" 
 #include "ICommand.h"
+#include "CheckUrlCommand.h"
 
 // constructor implement
 CheckUrlCommand::CheckUrlCommand(string url, BloomFilter& checkBloom)
