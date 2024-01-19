@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-class HashTwo : public Ihash{
+class HashTwo : public IHash{
     public:
         HashTwo(){};
 

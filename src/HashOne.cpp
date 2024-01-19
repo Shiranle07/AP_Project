@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-class HashOne : public Ihash{
+class HashOne : public IHash{
     public:
         HashOne(){};
 
