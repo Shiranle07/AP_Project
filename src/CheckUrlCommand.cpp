@@ -2,30 +2,23 @@
 using namespace std;
 #include <vector>
 #include "BloomFilter.h" 
+#include "ICommand.h"
 
-// the class includes objects that checks if an url exist by using bloom filter.
-class CheckUrlCommand : public ICommand{
+// constructor implement
+CheckUrlCommand::CheckUrlCommand(string url, BloomFilter& checkBloom)
+            : url(url), checkBloom(checkBloom) {};
 
-    private:
-        string url;
-        BloomFilter& checkBloom;
-
-// constructor
-    public:
-        CheckUrlCommand(std::string url, BloomFilter& checkBloom)
-            : url(url), checkBloom(checkBloom) {}
 
 /* checks if the url exist in the bloom filter array.
 if true, checks false positive case
 if false, prints "false"
 */ 
-    void execute(){
-        bool result = checkBloom->check(this->url);
-        if(!result){
-            cout<<result<<endl;
-        }
-        else{
+void CheckUrlCommand::execute(){
+    bool result = checkBloom.check(this->url);
+    if(!result){
+        cout<<"false"<<endl;
+    }
+    else{
             // TODO: false positive check
-        }
     }
 };
