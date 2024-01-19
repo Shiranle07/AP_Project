@@ -1,4 +1,4 @@
-class Ihash{
+class IHash{
     public:
-    long runFunc();
+    virtual long runFunc()=0;
 };
