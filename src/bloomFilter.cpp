@@ -6,14 +6,14 @@ using namespace std;
 #include "IHash.h"
 
 //constructor implement
-BloomFilter::BloomFilter(int arrSize, std::map<int, bool> hashToRunMap, map<int, IHash> hashesMap)
+BloomFilter::BloomFilter(int arrSize, std::map<int, bool> hashToRunMap, map<int, IHash*> hashesMap)
         : arrSize(arrSize), bloomArr(new int[arrSize]), hashToRunMap(hashToRunMap), hashesMap(hashesMap){};
 
 // runs all the required hash functions on the url and changes the array according to the hashes results
 void BloomFilter::add(string url){
     for(auto& pair : this->hashToRunMap){
         if (pair.second){
-            long bit = (this->hashesMap[pair.first].runFunc(url))%this->arrSize;
+            long bit = (this->hashesMap[pair.first]->runFunc(url))%this->arrSize;
             this->bloomArr[bit] = 1;
         }
     }
@@ -26,7 +26,7 @@ if all checks return true, the method returns that the url exists(can be false p
 bool BloomFilter::check(string url){
     for(const auto& pair : this->hashToRunMap){
         if (pair.second){
-            long bit = (this->hashesMap[pair.first].runFunc(url))%this->arrSize;
+            long bit = (this->hashesMap[pair.first]->runFunc(url))%this->arrSize;
             if(this->bloomArr[bit] == 1){
                 continue;
             }

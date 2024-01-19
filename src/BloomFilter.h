@@ -13,11 +13,11 @@ class BloomFilter{
         int arrSize;
         int* bloomArr;
         map<int, bool> hashToRunMap;
-        map<int, IHash> hashesMap;
+        map<int, IHash*> hashesMap;
 
 //constructor
     public:
-        BloomFilter(int arrSize, map<int, bool> hashToRunMap, map<int, IHash> hashesMap);
+        BloomFilter(int arrSize, map<int, bool> hashToRunMap, map<int, IHash*> hashesMap);
 
 // adds URL to the bloom filter array
     void add(string url);
