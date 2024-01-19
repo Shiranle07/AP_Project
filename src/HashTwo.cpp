@@ -12,4 +12,4 @@ class HashTwo : public IHash{
         string temp_value = to_string(hasher2(url));
         return abs(static_cast<long>(hasher2(temp_value)));
     }
-};
+}
