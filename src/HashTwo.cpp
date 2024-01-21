@@ -2,6 +2,7 @@
 #include <cmath>
 #include <string>
 #include "IHash.h"
+#include "HashTwo.h"
 using namespace std;
 
 HashTwo::HashTwo() {}
