@@ -11,6 +11,7 @@
 #include "App.h"
 #include "HashOne.h"
 #include "HashTwo.h"
+#include <string>
 using namespace std;
 
 App::App(map<string, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter bloomFilter) 
@@ -38,7 +39,7 @@ void App::run() {
             }
             l++; 
             // initilaze bloom filter
-            this->bloomFilter->initialize(stoi(line[0]));
+            this->bloomFilter.initialize(stoi(line[0]));
         }
         else{ // reading other lines
             if(!checker->checkOtherLines(line)){
@@ -53,13 +54,13 @@ void App::run() {
 
 
 int main(){
-    IHash* hash1 = new HashOne;
-    IHash* hash2 = new HashTwo;
+    IHash* hash1 = new HashOne();
+    IHash* hash2 = new HashTwo();
     map<int, IHash*> hashesMap;
     hashesMap[1] = hash1;
     hashesMap[2] = hash2;
-    ICommand* check = new CheckUrlCommand;
-    ICommand* insert = new InsertUrlCommand;
+    ICommand* check = new CheckUrlCommand();
+    ICommand* insert = new InsertUrlCommand();
     map<int, ICommand*> commands;
     commands[1] = insert;
     commands[2] = check;

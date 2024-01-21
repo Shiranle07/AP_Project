@@ -2,6 +2,7 @@
 using namespace std;
 #include <string>
 #include <map>
+#include <vector>
 #include "BloomFilter.h"
 #include "IHash.h"
 

@@ -14,11 +14,13 @@ class BloomFilter{
         int* bloomArr;
         map<int, bool>& hashToRunMap;
         map<int, IHash*>& hashesMap;
-        vector <string> urlList;
+        vector<string> urlList;
 
 //constructor
     public:
         BloomFilter(map<int, bool>& hashToRunMap, map<int, IHash*>& hashesMap);
+    
+    ~BloomFilter();
 
 // intilaize bloom filter array after input insertion
     void initialize(int arrSize);

@@ -4,10 +4,11 @@
 #include <string>
 using namespace std;
 #include <vector>
+#include "BloomFilter.h" 
 
 class ICommand{
     public:
-        virtual void execute() = 0;
+        virtual void execute(string url, BloomFilter& bloom) = 0;
 };
 
 #endif

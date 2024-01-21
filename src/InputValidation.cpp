@@ -3,6 +3,7 @@
 using namespace std;
 #include "ICommand.h"
 #include "InputValidation.h"
+#include <vector>
 
 InputValidation::InputValidation(map<string, ICommand*>& commands, map<int, bool>& hashToRunMap)
     : commands(commands), hashToRunMap(hashToRunMap) {}

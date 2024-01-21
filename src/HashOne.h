@@ -4,12 +4,13 @@
 #include <iostream>
 #include <string>
 #include "IHash.h"
+using namespace std;
 
 class HashOne : public IHash {
 public:
     HashOne();
 
-    long runFunc(std::string url) override;
+long runFunc(string url) override;
 };
 
 #endif // HASH_ONE_H

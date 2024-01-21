@@ -7,7 +7,7 @@ using namespace std;
 
 HashOne::HashOne() {}
 
-long HashOne::runFunc(string url) override {
+long HashOne::runFunc(string url){
     hash<string> hasher1;
     return abs(static_cast<long>(hasher1(url)));
 }
