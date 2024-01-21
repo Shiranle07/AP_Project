@@ -2,14 +2,12 @@
 #include <cmath>
 #include <string>
 #include "IHash.h"
+#include "HashOne.h"
 using namespace std;
 
-class HashOne : public IHash{
-    public:
-        HashOne(){}
+HashOne::HashOne() {}
 
-    long runFunc(string url) override {
-        hash<string> hasher1;
-        return abs(static_cast<long>(hasher1(url)));
-    }
-};
+long HashOne::runFunc(string url) override {
+    hash<string> hasher1;
+    return abs(static_cast<long>(hasher1(url)));
+}
