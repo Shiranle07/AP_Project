@@ -12,18 +12,25 @@ class BloomFilter{
     private:
         int arrSize;
         int* bloomArr;
-        map<int, bool> hashToRunMap;
-        map<int, IHash*> hashesMap;
+        map<int, bool>& hashToRunMap;
+        map<int, IHash*>& hashesMap;
+        vector <string> urlList;
 
 //constructor
     public:
-        BloomFilter(int arrSize, map<int, bool> hashToRunMap, map<int, IHash*> hashesMap);
+        BloomFilter(map<int, bool>& hashToRunMap, map<int, IHash*>& hashesMap);
+
+// intilaize bloom filter array after input insertion
+    void initialize(int arrSize);
+
+// getter for the URL list
+    vector<string>& getUrlList();
 
 // adds URL to the bloom filter array
     void add(string url);
 
 // checks if an URL exists in the bloom filter array
-    bool check();
+    bool check(string url);
 };
 
 #endif

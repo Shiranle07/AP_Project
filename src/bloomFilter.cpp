@@ -6,8 +6,21 @@ using namespace std;
 #include "IHash.h"
 
 //constructor implement
-BloomFilter::BloomFilter(int arrSize, std::map<int, bool> hashToRunMap, map<int, IHash*> hashesMap)
-        : arrSize(arrSize), bloomArr(new int[arrSize]), hashToRunMap(hashToRunMap), hashesMap(hashesMap){};
+BloomFilter::BloomFilter(map<int, bool>& hashToRunMap, map<int, IHash*>& hashesMap)
+        : arrSize(0), bloomArr(nullptr), hashToRunMap(hashToRunMap), hashesMap(hashesMap), urlList(){}
+
+BloomFilter::~BloomFilter() {
+    delete[] bloomArr;
+}
+
+void BloomFilter::initialize(int size) {
+    this->arrSize = size;
+    this->bloomArr = new int[arrSize];
+}
+
+vector<string>& getUrlList(){
+    return this->urlList;
+}
 
 // runs all the required hash functions on the url and changes the array according to the hashes results
 void BloomFilter::add(string url){
@@ -17,7 +30,7 @@ void BloomFilter::add(string url){
             this->bloomArr[bit] = 1;
         }
     }
-};
+}
 
 /* runs all the required hash functions on the url and checks if the bits are equal to 1 for all the hashes results
 if one of the checks returns false, the iteration stops and returns false
@@ -34,4 +47,6 @@ bool BloomFilter::check(string url){
         }
     }
     return(true);
-};
+}
+
+
