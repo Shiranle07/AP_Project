@@ -13,7 +13,7 @@ public:
     CheckUrlCommand();
 
     // Execute function to check the existence of the URL in the Bloom filter array
-    void execute(std::string url, BloomFilter& checkBloom) override;
+    void execute(string url, BloomFilter& checkBloom) override;
 };
 
 #endif // CHECK_URL_COMMAND_H
