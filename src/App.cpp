@@ -9,6 +9,8 @@
 #include <vector>
 #include <map>
 #include "App.h"
+#include "HashOne.h"
+#include "HashTwo.h"
 using namespace std;
 
 App::App(map<string, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter bloomFilter) 
