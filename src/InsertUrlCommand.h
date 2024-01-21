@@ -13,7 +13,7 @@ public:
     InsertUrlCommand();
 
     // Execute function to add the URL to the vector and Bloom filter array
-    void execute(std::string url, std::vector<std::string>& urlList, BloomFilter& insertBloom) override;
+    void execute(std::string url, BloomFilter& insertBloom) override;
 };
 
 #endif // INSERT_URL_COMMAND_H

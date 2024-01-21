@@ -14,12 +14,12 @@ CheckUrlCommand::CheckUrlCommand() {}
 if true, checks false positive case
 if false, prints "false"
 */ 
-void CheckUrlCommand::execute(string url, vector<string>& urlList, BloomFilter& checkBloom){
+void CheckUrlCommand::execute(string url, BloomFilter& checkBloom){
     bool result = checkBloom.check(url);
     cout<<result<<endl;
 
     if(result){
-        // false positive check******************8
+        // false positive check******************
     }
     
 }
