@@ -1,62 +1,84 @@
 #include "ICommand.h"
+#include "IHash.h"
+#include "InputValidation.h"
+#include "BloomFilter.h"
+#include "CheckUrlCommand.h"
+#include "InsertUrlCommand.h"
 #include <iostream>
-#include <string>
+#include <sstream>
 #include <vector>
+#include <map>
 using namespace std;
-#include "IHash"
 
 class App {
     private:
     map<string, ICommand*> commands;
     map<int, IHash*> hashesMap;
-    map<int, bool> hashToRunMap;
+    map<int, bool>& hashToRunMap;
+    BloomFilter bloomFilter;
 
     public:
-    App(map<string, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool> hashToRunMap) 
-        : commands(commands), hashesMap(hashesMap), hashToRunMap(hashToRunMap) {};
+    App(map<string, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter bloomFilter) 
+        : commands(commands), hashesMap(hashesMap), hashToRunMap(hashToRunMap), bloomFilter(bloomFilter) {}
 
     void run() {
         int l = 0;
+        InputValidation* checker = new InputValidation(this->commands, this->hashToRunMap);
         while (true) {
+            //initilaize the hashToRun map with false
+            for(auto& pair : this->hashesMap){
+                this->hashToRunMap[pair.first] = false;
+            }
             string input;
             cin >> input;
             istringstream iss(input); // converting the string input to a vector
             vector<string> line;
+            string word;
             while(iss >> word){
                 line.pushback(word);
             }
             if(l == 0){ // reading first line
-                try{
-                    int arrSize = stoi(line[0]);
-                    for (auto vec = line.begin() + 1; vec != line.end(); ++vec){ // changing the hashes bool values
-                        hashToRunMap[stoi(*vec)] = true;
-                    }
-                    ++l; // got valid first line
-                }
-                catch(invalid_argunemt e){
+                if(!checker->checkFirstLine(line)){
                     continue;
                 }
+                l++; 
+                // initilaze bloom filter
+                this->bloomFilter->initialize(stoi(line[0]));
             }
             else{ // reading other lines
-                if(line.size == 2){ // only command and url
-                    try{
-                        commands[stoi(line[0])]->execute(line[1]) // valid command
-                        // TODO: EXECUTE SHOULD GET THE URL *******************
-                    }
-                    catch(invalid_argunemt e){
-                        continue;
-                    }
+                if(!checker->checkOtherLines(line)){
+                    continue;
                 }
             }
 
         }
-    }
 
+        delete checker; 
+    }
+}
 
 int main(){
-    string firstLine;
-    cin >> firstLine;
+    IHash* hash1 = new HashOne;
+    IHash* hash2 = new HashTwo;
+    map<int, IHash*> hashesMap;
+    hashesMap[1] = hash1;
+    hashesMap[2] = hash2;
+    ICommand* check = new CheckUrlCommand;
+    ICommand* insert = new InsertUrlCommand;
+    map<int, ICommand*> commands;
+    commands[1] = insert;
+    commands[2] = check;
+    map<int, bool> hashToRunMap;
+
+    BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
+    App app(commands, hashesMap, hashToRunMap, bloomFilter);
+    app.run();
+
+    delete hash1;
+    delete hash2;
+    delete check;
+    delete insert;
+    delete bloomFilter;
 
 }
 
-}
