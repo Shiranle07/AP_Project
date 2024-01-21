@@ -1,25 +1,29 @@
+#include <iostream>
 #include <string>
-using namespace std;
 #include <vector>
-#include "BloomFilter.h" 
+#include "BloomFilter.h"
 #include "ICommand.h"
-#include "CheckUrlCommand.h"
+using namespace std;
+
 
 // constructor implement
-CheckUrlCommand::CheckUrlCommand(string url, BloomFilter& checkBloom)
-            : url(url), checkBloom(checkBloom) {};
+class CheckUrlCommand : public ICommand{
 
+// constructor
+    public:
+        CheckUrlCommand(){}
 
 /* checks if the url exist in the bloom filter array.
 if true, checks false positive case
 if false, prints "false"
 */ 
-void CheckUrlCommand::execute(){
-    bool result = checkBloom.check(this->url);
-    if(!result){
-        cout<<"false"<<endl;
-    }
-    else{
-            // TODO: false positive check
+    void execute(string url, vector<string>& urlList, BloomFilter& checkBloom) override {
+        bool result = checkBloom.check(url);
+        cout<<result<<endl;
+
+        if(result){
+            // false positive check******************8
+        }
+        
     }
 };
