@@ -19,8 +19,8 @@ void BloomFilter::initialize(int size) {
     this->bloomArr = new int[arrSize];
 }
 
-vector<string>& getUrlList(){
-    return this->urlList;
+vector<string>& BloomFilter::getUrlList(){
+    return(this->urlList);
 }
 
 // runs all the required hash functions on the url and changes the array according to the hashes results

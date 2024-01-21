@@ -6,6 +6,7 @@ using namespace std;
 #include <string>
 #include <map>
 #include "IHash.h"
+#include <vector>
 
 // the bloom filter class
 class BloomFilter{

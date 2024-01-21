@@ -6,19 +6,20 @@
 #include <vector>
 #include "ICommand.h"
 #include "BloomFilter.h"
+using namespace std;
 
 class InputValidation {
 private:
-    std::map<std::string, ICommand*>& commands;
-    std::map<int, bool>& hashToRunMap;
-    BloomFilter bloomFilter;
+    map<int, ICommand*>& commands;
+    map<int, bool>& hashToRunMap;
+    BloomFilter *bloomFilter;
 
 public:
-    InputValidation(std::map<std::string, ICommand*>& commands, std::map<int, bool>& hashToRunMap);
+    InputValidation(map<int, ICommand*>& commands, map<int, bool>& hashToRunMap, BloomFilter* bloomFilter);
 
-    bool checkFirstLine(const std::vector<std::string>& firstLine);
+    bool checkFirstLine(vector<string>& firstLine);
 
-    bool checkOtherLines(const std::vector<std::string>& otherLine);
+    bool checkOtherLines(vector<string>& otherLine);
 };
 
 #endif // INPUTVALIDATION_H

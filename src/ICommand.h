@@ -8,7 +8,7 @@ using namespace std;
 
 class ICommand{
     public:
-        virtual void execute(string url, BloomFilter& bloom) = 0;
+        virtual void execute(string url, BloomFilter* bloom) = 0;
 };
 
 #endif

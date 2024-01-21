@@ -14,19 +14,19 @@
 #include <string>
 using namespace std;
 
-App::App(map<string, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter bloomFilter) 
+App::App(map<int, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter* bloomFilter) 
         : commands(commands), hashesMap(hashesMap), hashToRunMap(hashToRunMap), bloomFilter(bloomFilter) {}
 
 void App::run() {
     int l = 0;
-    InputValidation* checker = new InputValidation(this->commands, this->hashToRunMap);
+    InputValidation* checker = new InputValidation(this->commands, this->hashToRunMap, this->bloomFilter);
     while (true) {
         //initilaize the hashToRun map with false
         for(auto& pair : this->hashesMap){
             this->hashToRunMap[pair.first] = false;
         }
         string input;
-        cin >> input;
+        getline(cin, input);
         istringstream iss(input); // converting the string input to a vector
         vector<string> line;
         string word;
@@ -37,9 +37,9 @@ void App::run() {
             if(!checker->checkFirstLine(line)){
                 continue;
             }
-            l++; 
+            ++l;
             // initilaze bloom filter
-            this->bloomFilter.initialize(stoi(line[0]));
+            this->bloomFilter->initialize(stoi(line[0]));
         }
         else{ // reading other lines
             if(!checker->checkOtherLines(line)){

@@ -6,16 +6,17 @@
 #include "IHash.h"
 #include "BloomFilter.h"
 #include "InputValidation.h"
+using namespace std;
 
 class App {
 private:
-    std::map<std::string, ICommand*> commands;
-    std::map<int, IHash*> hashesMap;
-    std::map<int, bool>& hashToRunMap;
-    BloomFilter bloomFilter;
+    map<int, ICommand*> commands;
+    map<int, IHash*> hashesMap;
+    map<int, bool>& hashToRunMap;
+    BloomFilter *bloomFilter;
 
 public:
-    App(std::map<std::string, ICommand*> commands, std::map<int, IHash*> hashesMap, std::map<int, bool>& hashToRunMap, BloomFilter bloomFilter);
+    App(map<int, ICommand*> commands, map<int, IHash*> hashesMap, map<int, bool>& hashToRunMap, BloomFilter* bloomFilter);
     void run();
 };
 
