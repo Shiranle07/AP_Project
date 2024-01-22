@@ -16,8 +16,6 @@ if false, prints "false"
 */ 
 void CheckUrlCommand::execute(string url, BloomFilter* checkBloom){
     bool result = checkBloom->check(url);
-    cout << boolalpha << result << endl;
-
     if(result){
         bool blackListed = false;
         for (const string& strUrl : checkBloom->getUrlList()) {
@@ -26,8 +24,10 @@ void CheckUrlCommand::execute(string url, BloomFilter* checkBloom){
                 break;
             }
         }
-        cout << boolalpha << blackListed << endl;
-
+        cout << boolalpha << result << " " << boolalpha << blackListed << endl;
+    }
+    else{
+        cout << boolalpha << result << endl;
     }
     
 }
