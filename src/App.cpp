@@ -21,10 +21,6 @@ void App::run() {
     int l = 0;
     InputValidation* checker = new InputValidation(this->commands, this->hashToRunMap, this->bloomFilter);
     while (true) {
-        //initilaize the hashToRun map with false
-        for(auto& pair : this->hashesMap){
-            this->hashToRunMap[pair.first] = false;
-        }
         string input;
         getline(cin, input);
         istringstream iss(input); // converting the string input to a vector
@@ -34,6 +30,10 @@ void App::run() {
             line.push_back(word);
         }
         if(l == 0){ // reading first line
+        //initilaize the hashToRun map with false before getting first line
+            for(auto& pair : this->hashesMap){
+                this->hashToRunMap[pair.first] = false;
+            }
             if(!checker->checkFirstLine(line)){
                 continue;
             }

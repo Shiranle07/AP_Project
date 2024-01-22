@@ -17,19 +17,14 @@ bool InputValidation::checkFirstLine(vector<string>& firstLine){
             hashToRunMap[stoi(*vec)] = true;
             }
             else{
-                    // ******* check *********
-    cout << "check first line: FALSE" << endl;
                 return(false);
             }
         }
     }
     catch(invalid_argument& e){
-    // ******* check *********
-    cout << "check first line: FALSE" << endl;
         return(false);
     }
-    // ******* check *********
-    cout << "check first line: TRUE" << endl;
+
     return(true);
 }
 
@@ -40,23 +35,15 @@ bool InputValidation::checkOtherLines(vector<string>& otherLine){
                 this->commands[stoi(otherLine[0])]->execute(otherLine[1], this->bloomFilter); // valid command
             }
             else{
-                    // ******* check *********
-    cout << "check other line: FALSE" << endl;
                 return(false);
             }
         }
         catch(exception& e){
-                // ******* check *********
-    cout << "check other line: FALSE" << endl;
             return(false);
         }
     }
     else{
-            // ******* check *********
-    cout << "check other line: FALSE" << endl;
         return(false);
     }
-    // ******* check *********
-    cout << "check other line: TRUE" << endl;
     return(true);
 }
