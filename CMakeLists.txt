@@ -13,21 +13,30 @@ FetchContent_Declare(
 
 enable_testing()
 set(SOURCE_FILES
-    src/calc.cpp # this is where the code we want to test
+    src/InsertUrlCommand.cpp # this is where the code we want to test
+    src/BloomFilter.h
+    src/HashOne.h
+    src/HashTwo.h
+    src/InsertUrlCommand.h
+    src/BloomFilter.cpp
+    src/HashOne.cpp
+    src/HashTwo.cpp
+    src/CheckUrlCommand.cpp
+    src/CheckUrlCommand.h
 )
 
 set(TEST_FILES
     tests/test_main.cpp #this is the main for tests
-    tests/calc_test.cpp # this file contain the tests
+    tests/InsertCommand_test.cpp # this file contain the tests
 )
 
-add_executable(CalcTests ${TEST_FILES})
+add_executable(ProjectTests ${TEST_FILES})
 
 #Link Google Test to the test executable
-target_link_libraries(CalcTests PRIVATE gtest gtest_main pthread)
+target_link_libraries(ProjectTests PRIVATE gtest gtest_main pthread)
 
 #Include the source directory for tests
-target_include_directories(CalcTests PRIVATE src)
+target_include_directories(ProjectTests PRIVATE src)
 
 include(GoogleTest)
-add_test(NAME CalcTests COMMAND CalcTests)
+add_test(NAME ProjectTests COMMAND ProjectTests)
