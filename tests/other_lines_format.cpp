@@ -3,11 +3,11 @@
 #include <vector>
 #include "../src/InputValidation.h"  // Include the correct header file
 
-// todo : create an object
-A a(a,b)
+
 
 // Test case for checking if the string starts with digit 1 or 2
 TEST(FormatTest, StartsWithDigitOneOrTwo) {
+
     // Good input: string starting with 2
     EXPECT_TRUE(startsWithDigitOneOrTwo({2, @a}));
 
