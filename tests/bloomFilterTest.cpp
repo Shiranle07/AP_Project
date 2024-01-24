@@ -4,12 +4,9 @@ using namespace std;
 #include <map>
 #include <vector>
 #include <string>
-#include "../src/InputValidation.cpp"
 #include "../src/HashOne.cpp"
 #include "../src/HashTwo.cpp"
 #include "../src/BloomFilter.cpp"
-#include "../src/CheckUrlCommand.cpp"
-#include "../src/InsertUrlCommand.cpp"
 
 
 TEST(BloomFilterTest, AddAndCheckURL) {
