@@ -15,10 +15,11 @@ g++ ./src/App.cpp ./src/BloomFilter.cpp ./src/CheckUrlCommand.cpp ./src/InsertUr
 
 #### 3. Run the code
 
-   Open the terminal and run:
+Open the terminal and run:
 ```Terminal
-./build/AP_exe1
+./AP_exe1
 ```
+
 ## Work Flow
 First, we read the task in its entirety together and checked that we correctly understood what was assigned to us.
 Together we came up with ideas for implementation in a general way and divided between us the general tasks that we added to JIRA.
