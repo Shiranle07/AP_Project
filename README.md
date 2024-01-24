@@ -26,11 +26,11 @@ Together we came up with ideas for implementation in a general way and divided b
 The first task was to write TDD for the basic tasks of the project and on top of that we wrote the various classes.
 Towards the end of writing the code, we made sure that the logical flow worked and that everything looked normal and we made corrections if needed.
 At this stage we conducted the TDD tests and fixed all the bugs we discovered.
-During the work, we made sure to use different branches throughout the work while updating the GIT. When we were sure of a certain version, we uploaded it to the main branch.
+During the work, we made sure to use different branches throughout the work while updating the GitHub. When we were sure of a certain version, we uploaded it to the main branch.
 
-After finishing writing the code and making sure, with the help of the TDD, that the code works, we created a Work Flow in GIT whose purpose to make sure that the code passes the TDD we wrote in every pull request that created to the main.
+After finishing writing the code and making sure, with the help of the TDD, that the code works, we created a Work Flow in GitHub whose purpose to make sure that the code passes the TDD we wrote in every pull request that created to the main.
 
-In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GIT whose goal is to produce an updated Docker Image for each new version of the code and upload it to GitHub
+In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GitHub whose goal is to produce an updated Docker Image for each new version of the code and upload it to DockerHub
 
 ## Refactors
 While implementing the code, we used a dictionary in order to make the commands we used more flexible, and to make the code more flexible to changes. For example, by adding HASH functions, we will only have to update the dictionary.
