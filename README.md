@@ -3,7 +3,7 @@
 https://github.com/Shiranle07/AP_Project.git
 
 ## Compile And Run The Code
-#### 1. Prerequisites:
+#### 1. Prerequisites
 Clone all the cpp and header files from the repository.
 #### 2. Compile the code
    * Make sure you are in the right path, where you cloned the erpository.
