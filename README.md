@@ -19,7 +19,7 @@ g++ ./src/App.cpp ./src/BloomFilter.cpp ./src/CheckUrlCommand.cpp ./src/InsertUr
 ```Terminal
 ./build/AP_exe1
 ```
-## Work Flow:
+## Work Flow
 First, we read the task in its entirety together and checked that we correctly understood what was assigned to us.
 Together we came up with ideas for implementation in a general way and divided between us the general tasks that we added to JIRA.
 The first task was to write TDD for the basic tasks of the project and on top of that we wrote the various classes.
@@ -29,7 +29,7 @@ During the work, we made sure to use different branches throughout the work whil
 
 In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GIT whose goal is to produce an updated Docker Image for each new version of the code and upload it to GitHub
 
-## Refactors:
+## Refactors
 While implementing the code, we used a dictionary in order to make the commands we used more flexible, and to make the code more flexible to changes. For example, by adding HASH functions, we will only have to update the dictionary.
 
 
