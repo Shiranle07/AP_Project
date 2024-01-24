@@ -22,12 +22,11 @@ TEST(CheckCommandTest, Execute){
     ICommand* check = new CheckUrlCommand();    
     map<int, bool> hashToRunMap;
     hashToRunMap[1] = true;
-
     BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
     bloomFilter->initialize(8);
     string url = "https://www.example.com0";
     string expectedOutputBefore = "false\n";
-
+// saving the output string that printing and check if it equal to false, because the url never added
     stringstream capturedOutputBefore;
     streambuf* coutBufferBefore = cout.rdbuf();
     cout.rdbuf(capturedOutputBefore.rdbuf());
@@ -37,7 +36,7 @@ TEST(CheckCommandTest, Execute){
     EXPECT_EQ(capturedOutputBefore.str(), expectedOutputBefore);
 
     string expectedOutputAfter = "true true\n";
-
+// saving the output string that printing and check if it equal to true ture, after adding the url
     stringstream capturedOutputAfter;
     streambuf* coutBufferAfter = cout.rdbuf();   
     cout.rdbuf(capturedOutputAfter.rdbuf());
