@@ -1,12 +1,21 @@
 #include <gtest/gtest.h>
 #include <map>
 #include <vector>
-#include "../src/InputValidation.h"  // Include the correct header file
+#include "../src/InputValidation.cpp"  // Include the correct header file
 
 
 
 // Test case for checking if the string starts with digit 1 or 2
 TEST(FormatTest, StartsWithDigitOneOrTwo) {
+    
+    IHash* hash1 = new HashOne();
+    IHash* hash2 = new HashTwo();
+    map<int, IHash*> hashesMap;
+    hashesMap[1] = hash1;
+    hashesMap[2] = hash2;
+    map<int, bool> hashToRunMap;
+    BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
+    InputValidation* inputValidation = new InputValidation(commands, hashToRunMap, bloomFilter);
 
     // Good input: string starting with 2
     EXPECT_TRUE(startsWithDigitOneOrTwo({2, @a}));
@@ -28,4 +37,9 @@ TEST(FormatTest, StartsWithDigitOneOrTwo) {
 
     // Bad input: string starting with a digit other than 1 or 2
     EXPECT_FALSE(startsWithDigitOneOrTwo({!, www.example.com0}));
+
+    delete hash1;
+    delete hash2;
+    delete bloomFilter;
+    delete inputValidation;
 }

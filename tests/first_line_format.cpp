@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <map>
 #include <vector>
-#include "../src/InputValidation.h"  // Include the correct header file
+#include "../src/InputValidation.cpp"  // Include the correct header file
 
 /**
 TEST(InsertCommandTest, Execute){
