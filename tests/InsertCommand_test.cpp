@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "../src/InsertUrlCommand.cpp"
-#include "../src/HashOne.h"
-#include "../src/HashTwo.h"
+#include "../src/BloomFilter.cpp"
+#include "../src/HashOne.cpp"
+#include "../src/HashTwo.cpp"
 #include <iostream>
 #include <vector>
 #include <map>

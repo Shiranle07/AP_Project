@@ -36,22 +36,21 @@ TEST(CheckCommandTest, Execute){
     cout.rdbuf(coutBufferBefore);
     EXPECT_EQ(capturedOutputBefore.str(), expectedOutputBefore);
 
-    string expectedOutput = "true true\n";
+    string expectedOutputAfter = "true true\n";
 
     stringstream capturedOutputAfter;
     streambuf* coutBufferAfter = cout.rdbuf();   
     cout.rdbuf(capturedOutputAfter.rdbuf());
 
-    BloomFilter->add(url);
+    bloomFilter->add(url);
+    bloomFilter->getUrlList().push_back(url);
     check->execute(url, bloomFilter);
     cout.rdbuf(coutBufferAfter);
-    EXPECT_EQ(capturedOutputAfter.str(), expectedOutputBefore);
+    EXPECT_EQ(capturedOutputAfter.str(), expectedOutputAfter);
 
 
     delete bloomFilter;
     delete check;
     delete hash1;
     delete hash2;
-    delete coutBufferBefore;
-    delete coutBufferAfter;
 }

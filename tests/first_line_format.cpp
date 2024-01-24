@@ -30,6 +30,8 @@ TEST(InputValidationTest1, CheckFirstLine) {
     hashesMap[1] = hash1;
     hashesMap[2] = hash2;
     map<int, bool> hashToRunMap;
+    hashToRunMap[1] = false;
+    hashToRunMap[2] = false;
     BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
     InputValidation* inputValidation = new InputValidation(commands, hashToRunMap, bloomFilter);
 
