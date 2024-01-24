@@ -10,6 +10,11 @@ InputValidation::InputValidation(map<int, ICommand*>& commands, map<int, bool>& 
     : commands(commands), hashToRunMap(hashToRunMap), bloomFilter(bloomFilter) {}
 
 bool InputValidation::checkFirstLine(vector<string>& firstLine){
+    if(firstLine.size()<2){
+                        // **************check*********
+                cout<<"false"<<endl;
+         return false;
+    }
     try{
         int arrSize = stoi(firstLine[0]);
         for (auto vec = firstLine.begin() + 1; vec != firstLine.end(); ++vec){ // changing the hashes bool values
@@ -17,14 +22,20 @@ bool InputValidation::checkFirstLine(vector<string>& firstLine){
             hashToRunMap[stoi(*vec)] = true;
             }
             else{
+                // **************check*********
+                cout<<"false"<<endl;
                 return(false);
             }
         }
     }
     catch(invalid_argument& e){
+                        // **************check*********
+        cout<<"false"<<endl;
         return(false);
     }
 
+                // **************check*********
+    cout<<"true"<<endl;
     return(true);
 }
 
