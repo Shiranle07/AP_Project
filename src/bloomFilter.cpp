@@ -42,15 +42,15 @@ if all checks return true, the method returns that the url exists(can be false p
 */
 bool BloomFilter::check(string url){
     for(const auto& pair : this->hashToRunMap){
-        if (pair.second){
+        if (pair.second){ // checks only fo the required hash functions
             long bit = (this->hashesMap[pair.first]->runFunc(url))%this->arrSize;
             if(this->bloomArr[bit] == 1){
                 continue;
             }
-            else return(false);
+            else return(false); // case one of the bits is not 1
         }
     }
-    return(true);
+    return(true); // all bits equal to 1
 }
 
 
