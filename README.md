@@ -1,4 +1,4 @@
-# AP_Project Ex1
+# AP_Project - Ex1
 ### link to repository
 https://github.com/Shiranle07/AP_Project.git
 
