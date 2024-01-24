@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: install dependencies
+      run: |
+        sudo apt-get install libgtest-dev cmake
+    - name: bulid project
+      run: |
+        cmake -B build -S .
+        cmake --build build
+    - name: Run tests
+      run: ctest --test-dir build
+
