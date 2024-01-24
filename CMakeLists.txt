@@ -13,21 +13,30 @@ FetchContent_Declare(
 
 enable_testing()
 set(SOURCE_FILES
-    src/calc.cpp # this is where the code we want to test
+    src/InputValidation.cpp # this is where the code we want to test
 )
 
-set(TEST_FILES
+set(FIRST_LINE_TEST_FILES
     tests/test_main.cpp #this is the main for tests
-    tests/calc_test.cpp # this file contain the tests
+    tests/first_line_format.cpp # this file contain the tests
 )
 
-add_executable(CalcTests ${TEST_FILES})
+set(OTHER_LINES_TEST_FILES
+    tests/test_main.cpp #this is the main for tests
+    tests/other_lines_format.cpp # this file contain the tests
+)
+
+add_executable(FirstLineTests ${FIRST_LINE_TEST_FILES})
+add_executable(OtherLinesTests ${OTHER_LINES_TEST_FILES})
 
 #Link Google Test to the test executable
-target_link_libraries(CalcTests PRIVATE gtest gtest_main pthread)
+target_link_libraries(FirstLineTests PRIVATE gtest gtest_main pthread)
+target_link_libraries(OtherLinesTests PRIVATE gtest gtest_main pthread)
 
 #Include the source directory for tests
-target_include_directories(CalcTests PRIVATE src)
+target_include_directories(FirstLineTests PRIVATE src)
+target_include_directories(OtherLinesTests PRIVATE src)
 
 include(GoogleTest)
-add_test(NAME CalcTests COMMAND CalcTests)
+add_test(NAME FirstLineTests COMMAND FirstLineTests)
+add_test(NAME OtherLinesTests COMMAND OtherLinesTests)
