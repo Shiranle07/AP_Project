@@ -30,7 +30,7 @@ During the work, we made sure to use different branches throughout the work whil
 
 After finishing writing the code and making sure, with the help of the TDD, that the code works, we created a Work Flow in GitHub whose purpose to make sure that the code passes the TDD we wrote in every pull request that created to the main.
 
-In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GitHub whose goal is to produce an updated Docker Image for each new released version of the code and upload it to DockerHub
+In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GitHub whose goal is to produce an updated Docker Image for each new released version of the code and upload it to DockerHub.
 
 ## Refactors
 While implementing the code, we used a dictionary in order to make the commands we used more flexible, and to make the code more flexible to changes. For example, by adding HASH functions, we will only have to update the dictionary.
