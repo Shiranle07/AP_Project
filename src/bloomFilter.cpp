@@ -10,15 +10,18 @@ using namespace std;
 BloomFilter::BloomFilter(map<int, bool>& hashToRunMap, map<int, IHash*>& hashesMap)
         : arrSize(0), bloomArr(nullptr), hashToRunMap(hashToRunMap), hashesMap(hashesMap), urlList(){}
 
+// destructor implement
 BloomFilter::~BloomFilter() {
     delete[] bloomArr;
 }
 
+// initialize the bloom filter array by the giving array size
 void BloomFilter::initialize(int size) {
     this->arrSize = size;
     this->bloomArr = new int[arrSize];
 }
 
+// getter for the url list
 vector<string>& BloomFilter::getUrlList(){
     return(this->urlList);
 }
