@@ -1,63 +1,139 @@
+using namespace std;
+#include <iostream>
 #include <gtest/gtest.h>
-#include <cctype>
-#include "../src/calc.cpp" // here we include the code to be tested
+#include <map>
+#include <vector>
+#include <string>
+#include "../src/InputValidation.cpp"
+#include "../src/HashOne.cpp"
+#include "../src/HashTwo.cpp"
+#include "../src/BloomFilter.cpp"
+#include "../src/CheckUrlCommand.cpp"
+#include "../src/InsertUrlCommand.cpp"
 
-// todo : create an object
-A a(a,b)
+
 
 // Checks that the first number in the input (array size) contain only digits.
-TEST(FormatTest, JustDigits) {
+TEST(InputValidationTest1, CheckFirstLine) {
+
+    /**Create an instance of InputValidation with necessary maps and BloomFilter***************
+    need the parameters to send???***************
+    */ 
+    ICommand* check = new CheckUrlCommand();
+    ICommand* insert = new InsertUrlCommand();
+    map<int, ICommand*> commands;
+    commands[1] = insert;
+    commands[2] = check;
+    IHash* hash1 = new HashOne();
+    IHash* hash2 = new HashTwo();
+    map<int, IHash*> hashesMap;
+    hashesMap[1] = hash1;
+    hashesMap[2] = hash2;
+    map<int, bool> hashToRunMap;
+    BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
+    InputValidation* inputValidation = new InputValidation(commands, hashToRunMap, bloomFilter);
+
+    vector<string> input_vector{"256", "1", "2"};
     // Test with a normal array size
-    EXPECT_TRUE(justDigits("256 1 2"));
-
+    EXPECT_TRUE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"-8", "2", "2"};
     // Test with a negative array size
-    EXPECT_FALSE(justDigits("-8 2 1"));
-    
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"0", "2", "1"};
     // Test that array size = 0
-    EXPECT_FALSE(justDigits("0 2 1"));
-
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"128a", "1", "2"};
     // Test with a string containing also letter in array size
-    EXPECT_FALSE(justDigits("128a 1 2"));
-
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"a", "1", "1"};
     // Test with a string containing no numbers in array size
-    EXPECT_FALSE(justDigits("a 1 1"));
-
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {""};
     // Test with an empty string
-    EXPECT_FALSE(justDigits(""));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+
+    delete insert;
+    delete check;
+    delete hash1;
+    delete hash2;
+    delete bloomFilter;
+    delete inputValidation;
+
 }
 
 // Checks that the hash number is 1 or 2 only.
-TEST(FormatTest, HashNumber) {
-    // Test with a normal hash numbers
-    EXPECT_TRUE(hashNumber("8 1 2"));
+TEST(InputValidationTest2, CheckFirstLine) {
+
+    ICommand* check = new CheckUrlCommand();
+    ICommand* insert = new InsertUrlCommand();
+    map<int, ICommand*> commands;
+    commands[1] = insert;
+    commands[2] = check;
+    IHash* hash1 = new HashOne();
+    IHash* hash2 = new HashTwo();
+    map<int, IHash*> hashesMap;
+    hashesMap[1] = hash1;
+    hashesMap[2] = hash2;
+    map<int, bool> hashToRunMap;
+    BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
+    InputValidation* inputValidation = new InputValidation(commands, hashToRunMap, bloomFilter);
+    vector<string> input_vector{"8", "3", "2"};
 
     // Test with a big hash number
-    EXPECT_FALSE(hashNumber("8 3 2"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"8", "3", "0"};
 
     // Test with a small hash number
-    EXPECT_FALSE(hashNumber("8 3 0"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"8", "3", "-2"};
 
     // Test with a negative hash number
-    EXPECT_FALSE(hashNumber("8 3 -2"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"8", "1", "a6"};
 
     // Test with a string containing also letter in hash number
-    EXPECT_FALSE(hashNumber("8 1 6"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"8"};
 
     // Test with no hash number
-    EXPECT_FALSE(hashNumber("8"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+
+    delete insert;
+    delete check;
+    delete hash1;
+    delete hash2;
+    delete bloomFilter;
+    delete inputValidation;
 }
 
 // Checks that the first input has more than one digit.
-TEST(FormatTest, HasMoreThanOneNumber) {
-    // Test with a string containing more than one number
-    EXPECT_TRUE(hasMoreThanOneNumber("8 1 2"));
-
+TEST(InputValidationTest3, CheckFirstLine) {
+    
+    ICommand* check = new CheckUrlCommand();
+    ICommand* insert = new InsertUrlCommand();
+    map<int, ICommand*> commands;
+    commands[1] = insert;
+    commands[2] = check;
+    IHash* hash1 = new HashOne();
+    IHash* hash2 = new HashTwo();
+    map<int, IHash*> hashesMap;
+    hashesMap[1] = hash1;
+    hashesMap[2] = hash2;
+    map<int, bool> hashToRunMap;
+    BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
+    InputValidation* inputValidation = new InputValidation(commands, hashToRunMap, bloomFilter);
+    vector<string> input_vector{"256"};
     // Test with a string containing only one number
-    EXPECT_FALSE(hasMoreThanOneNumber("256"));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    input_vector = {"a8b2c1"};
 
     // Test with a string containing no numbers
-    EXPECT_FALSE(hasMoreThanOneNumber("a8b2c1"));
-
-    // Test with an empty string
-    EXPECT_FALSE(hasMoreThanOneNumber(""));
+    EXPECT_FALSE(inputValidation->checkFirstLine(input_vector));
+    
+    delete insert;
+    delete check;
+    delete hash1;
+    delete hash2;
+    delete bloomFilter;
+    delete inputValidation;
 }
