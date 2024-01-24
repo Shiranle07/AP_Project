@@ -25,7 +25,7 @@ Towards the end of writing the code, we made sure that the logical flow worked a
 At this stage we conducted the TDD tests and fixed all the bugs we discovered.
 During the work, we made sure to use different branches throughout the work while updating the GIT. When we were sure of a certain version, we uploaded it to the main branch.
 
-########DOCER
+In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GIT whose goal is to produce an updated Docker Image for each new version of the code and upload it to GitHub
 
 ## Refactors:
 While implementing the code, we used a dictionary in order to make the commands we used more flexible, and to make the code more flexible to changes. For example, by adding HASH functions, we will only have to update the dictionary.
