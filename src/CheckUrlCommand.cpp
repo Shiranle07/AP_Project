@@ -15,19 +15,19 @@ if true, checks false positive case
 if false, prints "false"
 */ 
 void CheckUrlCommand::execute(string url, BloomFilter* checkBloom){
-    bool result = checkBloom->check(url);
-    if(result){
+    bool result = checkBloom->check(url); // checks the bloom filter array
+    if(result){ // if the url exists, checking false positive
         bool blackListed = false;
         for (const string& strUrl : checkBloom->getUrlList()) {
             if (strUrl == url) {
-                blackListed = true;
+                blackListed = true; // url was found in the vector
                 break;
             }
         }
         cout << boolalpha << result << " " << boolalpha << blackListed << endl;
     }
     else{
-        cout << boolalpha << result << endl;
+        cout << boolalpha << result << endl; 
     }
     
 }

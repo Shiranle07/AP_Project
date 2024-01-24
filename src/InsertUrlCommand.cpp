@@ -11,6 +11,6 @@ InsertUrlCommand::InsertUrlCommand() {}
 
 // add the url to the url vector and add the url to the bloom filter arrary according to the hash result
 void InsertUrlCommand::execute(string url,  BloomFilter* insertBloom){
-    insertBloom->getUrlList().push_back(url);
-    insertBloom->add(url);
+    insertBloom->getUrlList().push_back(url); // adding to url list
+    insertBloom->add(url); // adding to bloom filter array
 }

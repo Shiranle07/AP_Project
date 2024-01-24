@@ -5,6 +5,7 @@
 using namespace std;
 #include <vector>
 
+// interface for hash function objects
 class IHash{
     public:
     virtual long runFunc(string url)=0;

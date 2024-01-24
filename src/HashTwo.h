@@ -6,6 +6,7 @@
 #include "IHash.h"
 using namespace std;
 
+// class for hash function implementation 
 class HashTwo : public IHash {
 public:
     HashTwo();

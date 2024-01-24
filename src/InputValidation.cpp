@@ -8,11 +8,13 @@ using namespace std;
 #include <cctype>
 #include "BloomFilter.h"
 
+// Constructor
 InputValidation::InputValidation(map<int, ICommand*>& commands, map<int, bool>& hashToRunMap, BloomFilter* bloomFilter)
     : commands(commands), hashToRunMap(hashToRunMap), bloomFilter(bloomFilter) {}
 
+// this method checks the validation of the first line of the input
 bool InputValidation::checkFirstLine(vector<string>& firstLine){
-    if(firstLine.size()<2){
+    if(firstLine.size()<2){ // must be at least 2 arguments - array size and hash function
          return false;
     }
     try{
@@ -21,28 +23,29 @@ bool InputValidation::checkFirstLine(vector<string>& firstLine){
             return(false);
         }
         for (auto vec = firstLine.begin() + 1; vec != firstLine.end(); ++vec){ // changing the hashes bool values
-            if(!(all_of((*vec).begin(), (*vec).end(), ::isdigit))){
+            if(!(all_of((*vec).begin(), (*vec).end(), ::isdigit))){ // hash function must be digit
                 return false;
             }
 
-            if(hashToRunMap.find(stoi(*vec)) != hashToRunMap.end()){
-            hashToRunMap[stoi(*vec)] = true;
+            if(hashToRunMap.find(stoi(*vec)) != hashToRunMap.end()){ // checks hash function number's validation
+            hashToRunMap[stoi(*vec)] = true; // if valid, changing to true
             }
             else{
-                return(false);
+                return(false); // case the user gave invalid hash function
             }
         }
     }
     catch(invalid_argument& e){
         return(false);
     }
-    return(true);
+    return(true); // all checks passed
 }
 
+// this method checks the validation of the other lines of the input
 bool InputValidation::checkOtherLines(vector<string>& otherLine){
     if(otherLine.size() == 2){ // only command and url
         try{
-            if(!(all_of(otherLine[0].begin(), otherLine[0].end(), ::isdigit))){
+            if(!(all_of(otherLine[0].begin(), otherLine[0].end(), ::isdigit))){ // command must be a digit
                 return(false);
             }
             if(commands.find(stoi(otherLine[0])) != commands.end()){

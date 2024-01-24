@@ -14,17 +14,26 @@
 #include <string>
 using namespace std;
 
+/*
+this is the main function to the program
+*/
 int main(){
+    // all needed objects creation
     IHash* hash1 = new HashOne();
     IHash* hash2 = new HashTwo();
     map<int, IHash*> hashesMap;
+    // initilizing hashes map with the supporting hash function on the program
     hashesMap[1] = hash1;
     hashesMap[2] = hash2;
+
+    // initilizing commands map with the supporting commands on the program
     ICommand* check = new CheckUrlCommand();
     ICommand* insert = new InsertUrlCommand();
     map<int, ICommand*> commands;
     commands[1] = insert;
     commands[2] = check;
+
+    // creating an empty map to the hash function the user will ask to use with
     map<int, bool> hashToRunMap;
 
     BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
