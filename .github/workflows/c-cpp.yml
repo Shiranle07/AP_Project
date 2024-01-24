@@ -18,10 +18,8 @@ jobs:
         sudo apt-get install libgtest-dev cmake
     - name: bulid project
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+        cmake-B build-S .
+        cmake --build build
     - name: Run tests
-      run: ctest
+      run: ctest--test-dir build
 
