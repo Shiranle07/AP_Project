@@ -13,7 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: bulid projrct
+    - name: install dependencies
+      run: |
+        sudo apt-get install libgtest-dev cmake
+    - name: bulid project
       run: |
         mkdir build
         cd build
