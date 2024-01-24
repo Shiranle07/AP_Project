@@ -10,7 +10,7 @@ Clone all the cpp and header files from the repository.
    * Open the terminal and run:
    
 ```Terminal
-g++ ./src/App.cpp ./src/BloomFilter.cpp ./src/CheckUrlCommand.cpp ./src/InsertUrlCommand.cpp ./src/HashOne.cpp ./src/HashTwo.cpp ./src/InputValidation.cpp ./src/main.cpp -o ./build/AP_exe1
+g++ ./src/App.cpp ./src/BloomFilter.cpp ./src/CheckUrlCommand.cpp ./src/InsertUrlCommand.cpp ./src/HashOne.cpp ./src/HashTwo.cpp ./src/InputValidation.cpp ./src/main.cpp -o ./AP_exe1
 ```
 
 #### 3. Run the code
@@ -27,6 +27,8 @@ The first task was to write TDD for the basic tasks of the project and on top of
 Towards the end of writing the code, we made sure that the logical flow worked and that everything looked normal and we made corrections if needed.
 At this stage we conducted the TDD tests and fixed all the bugs we discovered.
 During the work, we made sure to use different branches throughout the work while updating the GIT. When we were sure of a certain version, we uploaded it to the main branch.
+
+After finishing writing the code and making sure, with the help of the TDD, that the code works, we created a Work Flow in GIT whose purpose to make sure that the code passes the TDD we wrote in every pull request that created to the main.
 
 In the next step, we created a Docker File and from it we built a container that contains all the desired dependencies in order to run the project. We created another Workflow in GIT whose goal is to produce an updated Docker Image for each new version of the code and upload it to GitHub
 
