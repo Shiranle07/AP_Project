@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <pthread.h>
+#include "../src/BloomFilter.cpp"
 
 const int server_port = 5555;
 
@@ -18,6 +19,18 @@ void* clientHandler(void* client_socket_ptr) {
         perror("error reading from client");
     } else {
         std::cout << "Received from client: " << buffer << std::endl;
+
+        // Create an instance of BloomFilter
+        std::map<int, bool> hashToRunMap;
+        std::map<int, IHash*> hashesMap;
+        BloomFilter bloomFilter(hashToRunMap, hashesMap);
+
+
+
+        // here we will add code to use bloomFilter
+
+
+
         int sent_bytes = send(client_sock, buffer, read_bytes, 0);
         if (sent_bytes < 0) {
             perror("error sending to client");
@@ -27,7 +40,6 @@ void* clientHandler(void* client_socket_ptr) {
     delete (int*)client_socket_ptr;
     return NULL;
 }
-
 
 int main() {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -54,7 +66,7 @@ int main() {
     while (true) {
         struct sockaddr_in client_sin;
         unsigned int addr_len = sizeof(client_sin);
-        int* client_sock = new int; // Dynamically allocate client socket to avoid data races
+        int* client_sock = new int;
         *client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
         if (*client_sock < 0) {
             perror("error accepting client");
@@ -67,7 +79,7 @@ int main() {
             delete client_sock;
             continue;
         }
-        pthread_detach(thread_id); // Detach the thread to avoid memory leaks
+        pthread_detach(thread_id);
     }
 
     close(sock);
