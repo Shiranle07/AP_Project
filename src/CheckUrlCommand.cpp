@@ -12,9 +12,9 @@ CheckUrlCommand::CheckUrlCommand() {}
 
 /* checks if the url exist in the bloom filter array.
 if true, checks false positive case
-if false, prints "false"
+if false, return "false"
 */ 
-void CheckUrlCommand::execute(string url, BloomFilter* checkBloom){
+bool CheckUrlCommand::execute(string url, BloomFilter* checkBloom) {
     bool result = checkBloom->check(url); // checks the bloom filter array
     if(result){ // if the url exists, checking false positive
         bool blackListed = false;
@@ -24,11 +24,11 @@ void CheckUrlCommand::execute(string url, BloomFilter* checkBloom){
                 break;
             }
         }
-        cout << boolalpha << result << " " << boolalpha << blackListed << endl;
+        return blackListed; // returning true if blacklisted, false otherwise
     }
     else{
-        cout << boolalpha << result << endl; 
+        return false; // returning false if the url does not exist in the bloom filter
     }
-    
 }
+
 
