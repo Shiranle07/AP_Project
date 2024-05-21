@@ -9,7 +9,7 @@ using namespace std;
 // interface for command object that has only execute methode
 class ICommand{
     public:
-        virtual void execute(string url, BloomFilter* bloom) = 0;
+        virtual bool execute(string url, BloomFilter* bloom) = 0;
 };
 
 #endif
