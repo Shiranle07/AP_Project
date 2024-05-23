@@ -49,7 +49,7 @@ bool InputValidation::checkOtherLines(vector<string>& otherLine){
                 return(false);
             }
             if(commands.find(stoi(otherLine[0])) != commands.end()){
-                this->commands[stoi(otherLine[0])]->execute(otherLine[1], this->bloomFilter); // valid command
+                return this->commands[stoi(otherLine[0])]->execute(otherLine[1], this->bloomFilter); // valid command
             }
             else{
                 return(false);

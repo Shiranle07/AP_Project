@@ -13,7 +13,7 @@ public:
     InsertUrlCommand();
 
     // Execute function to add the URL to the vector and Bloom filter array
-    void execute(string url, BloomFilter* insertBloom);
+    bool execute(string url, BloomFilter* insertBloom);
 };
 
 #endif // INSERT_URL_COMMAND_H

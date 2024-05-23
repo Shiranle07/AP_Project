@@ -17,7 +17,8 @@ set(SOURCE_FILES
     src/CheckUrlCommand.cpp
     src/InputValidation.cpp # this is where the code we want to test
     src/BloomFilter.cpp
-
+    src/HashOne.cpp
+    src/HashTwo.cpp
 )
 
 set(INSERT_TEST_FILES
@@ -57,6 +58,7 @@ target_link_libraries(CheckTests PRIVATE gtest gtest_main pthread)
 target_link_libraries(FirstLineTests PRIVATE gtest gtest_main pthread)
 target_link_libraries(OtherLinesTests PRIVATE gtest gtest_main pthread)
 target_link_libraries(BloomFilterTest PRIVATE gtest gtest_main pthread)
+add_executable(bloom src/ServerSocket.cpp ${SOURCE_FILES})
 
 #Include the source directory for tests
 target_include_directories(InsertTests PRIVATE src)
