@@ -31,6 +31,7 @@ BloomFilter* bloomFilter = new BloomFilter(hashToRunMap, hashesMap);
 
 bool initialized = false;
 
+//creating a function to handle the client by creating a thread
 void* clientHandler(void* client_socket_ptr) {
     int client_sock = *((int*)client_socket_ptr);
     char buffer[4096];
@@ -53,7 +54,7 @@ void* clientHandler(void* client_socket_ptr) {
         }
 
         string response;
-
+        // check if the input is valid
         if (initialized) {
             bool result = checker->checkOtherLines(line);
             if (result) {
@@ -75,12 +76,13 @@ void* clientHandler(void* client_socket_ptr) {
                 response = "OK";
             }
         }
-
+        // sending the response to the client
         int sent_bytes = send(client_sock, response.c_str(), response.size(), 0);
         if (sent_bytes < 0) {
             perror("error sending to client");
         }
     }
+    // closing the client socket
     close(client_sock);
     return NULL;
 }
